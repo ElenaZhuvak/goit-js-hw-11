@@ -5,7 +5,7 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 import {fetchImages} from './js/pixabay-api'
 import { renderGallery } from "./js/render-functions";
-import { list } from "postcss";
+let lightbox;
 
 const form = document.querySelector('.js-search-form');
 const gallery = document.querySelector('.gallery');
@@ -50,6 +50,7 @@ function initializeLightbox () {
         lightbox.refresh();
     } else {
         lightbox = new SimpleLightbox('.gallery a', {
+            captions: true,
             captionsData: 'alt',
             captionDelay: 250,
         });
