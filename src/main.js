@@ -26,11 +26,10 @@ function onSubmit (event) {
 
     gallery.innerHTML = '';
 
-    
+    showLoader();
 
     fetchImages(query)
         .then(images => {
-            showLoader();
             if (images.length > 0) {
                 renderGallery(images);
                 initializeLightbox();
