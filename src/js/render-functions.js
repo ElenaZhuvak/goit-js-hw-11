@@ -23,3 +23,11 @@ export function renderGallery (images) {
 
     gallery.insertAdjacentHTML('beforeend', markup);
 }
+
+const loaderContainer = document.querySelector('.loader-container');
+export function showLoader() {
+    loaderContainer.classList.remove('hidden');
+}
+export function hideLoader() {
+    loaderContainer.classList.add('hidden')
+}

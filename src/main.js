@@ -3,8 +3,8 @@ import "izitoast/dist/css/iziToast.min.css";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-import {fetchImages} from './js/pixabay-api'
-import { renderGallery } from "./js/render-functions";
+import {fetchImages} from './js/pixabay-api';
+import { renderGallery, showLoader, hideLoader } from "./js/render-functions";
 let lightbox;
 
 const form = document.querySelector('.js-search-form');
@@ -26,8 +26,11 @@ function onSubmit (event) {
 
     gallery.innerHTML = '';
 
+    
+
     fetchImages(query)
         .then(images => {
+            showLoader();
             if (images.length > 0) {
                 renderGallery(images);
                 initializeLightbox();
@@ -41,8 +44,11 @@ function onSubmit (event) {
                 position: "topRight",
             });
         })
+        .finally(() => {
+            hideLoader();
+        })
 
-    form.reset()
+        form.reset();
 }
 
 function initializeLightbox () {
